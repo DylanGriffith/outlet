@@ -16,16 +16,11 @@ if ENV["RACK_ENV"] == 'production'
   )
 else
   ActiveRecord::Base.establish_connection(
-    adapter:  'mysql2',
-    host:     db_host || 'localhost',
-    username: 'root',
-    password: db_pass || '',
-    database: db_name || 'opener_development'
+    adapter:  'sqlite3',
+    database: "/tmp/outlet-server.db"
   )
 end
 
 ActiveRecord::Base.connection.execute("CREATE TABLE IF NOT EXISTS outputs (uuid varchar(40), text text, created_at timestamp DEFAULT CURRENT_TIMESTAMP);")
 
-if ActiveRecord::Base.connection.execute("SHOW INDEX FROM outputs").nil?
-  ActiveRecord::Base.connection.execute("CREATE INDEX uuid_index ON outputs(uuid);")
-end
+ActiveRecord::Base.connection.execute("CREATE INDEX IF NOT EXISTS uuid_index ON outputs(uuid);")

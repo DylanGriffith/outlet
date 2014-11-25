@@ -28,8 +28,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'nokogiri'
   gem.add_dependency 'jdbc-mysql'
   gem.add_dependency 'activerecord-jdbcmysql-adapter'
+  gem.add_dependency 'jdbc-sqlite3'
+  gem.add_dependency 'activerecord-jdbcsqlite3-adapter'
   gem.add_dependency 'activerecord', '~> 3.2'
-
   gem.add_dependency 'opener-daemons', '~> 2.2'
   gem.add_dependency 'opener-webservice', '~> 2.1'
   gem.add_dependency 'opener-core', '~> 2.2'
